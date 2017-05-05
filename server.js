@@ -9,6 +9,11 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 
+var Database = require('./models/db');
+
+var db = new Database('localhost','root','root','todolist');
+db.connect();
+
 var app = express();
 
 var server = http.createServer(app);
