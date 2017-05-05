@@ -8,14 +8,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
-
 var Database = require('./models/db');
+var User = require('./models/user');
 
+//Connect with the database
 var db = new Database('localhost','root','root','todolist');
 db.connect();
 
+//Create express app
 var app = express();
 
+//Run server
 var server = http.createServer(app);
 server.listen(3000,function(){
   console.log("Server running on port 3000");
