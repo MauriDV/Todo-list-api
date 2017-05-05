@@ -10,6 +10,7 @@ var path = require('path');
 var logger = require('morgan');
 var Database = require('./models/db');
 var User = require('./models/user');
+var Task = require('./models/task');
 
 //Connect with the database
 var db = new Database('localhost','root','root','todolist');
