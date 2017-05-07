@@ -31,6 +31,14 @@ router.get('/logged',function(req,res){
 	uc.userLogged(req,res);
 });
 
+router.get('/alltasks/:id',function(req,res){
+	uc.findAllTasks(req,res);
+});
+
+router.get('/tasks/:id/:completed',function(req,res){
+	uc.findTasks(req,res);
+});
+
 router.post('/register',passport.authenticate('local-register',{
 	successRedirect : "/api/users",
 	failureRedirect : '/api/users/register'

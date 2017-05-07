@@ -35,6 +35,25 @@ class UserDao {
       }
     });
   }
+
+  findAllTask(id,callback){
+    this.connection.query("select taskId,userTask,taskText, completed from user join task where userTask=userId and userTask=?",id,function(err,tasks){
+      if(err){
+        callback(err);
+      }else{
+        callback(null,tasks);
+      }
+    });
+  }
+  findTasks(id,completed,callback){
+    this.connection.query("select taskId,userTask,taskText, completed from user join task where userTask=userId and userTask=? and completed=?",[id,completed],function(err,tasks){
+      if(err){
+        callback(err);
+      }else{
+        callback(null,tasks);
+      }
+    });
+  }
 }
 
 module.exports = UserDao;

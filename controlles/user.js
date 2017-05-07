@@ -35,6 +35,24 @@ class UserController{
   	//console.log(req.user);
   	res.send(req.user);
   }
+  findAllTasks(req,res){
+    this.UserDao.findAllTask(req.params.id,function(err,tasks){
+      if(err){
+        res.status(500).send(err);
+      }else{
+        res.send(tasks);
+      }
+    });
+  }
+  findTasks(req,res){
+    this.UserDao.findTasks(req.params.id,req.params.completed,function(err,tasks){
+      if(err){
+        res.status(500).send(err);
+      }else{
+        res.send(tasks);
+      }
+    });
+  }
 }
 
 module.exports = UserController;
