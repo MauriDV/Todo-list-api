@@ -1,6 +1,8 @@
 var mysql = require('mysql');
 
 class Db {
+  
+  //Constructor
   constructor(host,user,pass,dbName){
     this.host = host;
     this.user = user;
@@ -8,6 +10,8 @@ class Db {
     this.dbName = dbName;
     this.connection = null;
   }
+
+  //Establish connection to the database
   connect(){
     var config = {
   		host: this.host,
@@ -20,8 +24,6 @@ class Db {
   	connection.connect(function(err){
   		if (err) {
   			console.log('Error in db');
-  		}else{
-  			console.log('Connection with: '+ config.database);
   		}
   	});
   	this.connection = connection;

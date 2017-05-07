@@ -1,3 +1,8 @@
+
+
+/*
+  ·········· IMPORTS ··········
+*/
 var http = require('http');
 var express = require('express');
 var bcrypt = require('bcrypt-nodejs');
@@ -9,17 +14,10 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 var Database = require('./models/db');
-var User = require('./models/user');
-var Task = require('./models/task');
-var UserController = require('./controlles/user');
 var UserDao = require('./dao/user');
-var TaskController = require('./controlles/task');
-var TaskDao = require('./dao/task');
 
+// Create instance of userDao
 var ud = new UserDao();
-var uc = new UserController();
-var td = new TaskDao();
-var tc = new TaskController();
 
 //Connect with the database
 var db = new Database('localhost','root','root','todolist');
@@ -31,9 +29,10 @@ var app = express();
 //Run server
 var server = http.createServer(app);
 server.listen(8080,function(){
-  console.log("Server running on port 3000");
+  console.log("Server running on port 8080");
 });
 
+// CORS Configuration
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -88,6 +87,7 @@ passport.use(
   })
 );
 
+//Server configurations
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -100,6 +100,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Main route
 var api = require('./routes/api');
-
 app.use('/api',api);
