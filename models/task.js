@@ -13,4 +13,4 @@ class Task {
 }
 
 //Export Task
-exports.model = Task;
+module.exports = Task;
